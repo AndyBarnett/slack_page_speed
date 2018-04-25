@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
    s.name        = 'slack_page_speed'
    s.executables = ['slack_page_speed']
-   s.version     = '0.0.8'
+   s.version     = '0.0.9'
    s.date        = '2018-04-25'
    s.summary     = "Let's get notifying!"
    s.description = "Discover a website's page speed scores with Google Pagespeed and WebPageTest and notify slack with the results."
