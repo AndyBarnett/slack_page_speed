@@ -34,9 +34,7 @@ HTTParty::Basement.default_options.update(verify: false)
 #   car-insurance/
 #   Homepage
 # )
-@page_list            = %w(
-credit-cards/
-)
+@page_list            = configuration_info['page_list']
 
 # @run_results = [{}, {}, {}]
 @run_results          = [{}]

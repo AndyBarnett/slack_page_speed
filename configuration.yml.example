@@ -1,0 +1,16 @@
+---
+slack_url: 'https://hooks.slack.com/services/foo/bar/baz' # Set up an incoming webhook for your Slack account here https://get.slack.help/hc/en-us/articles/115005265063-Incoming-WebHooks-for-Slack#set-up-incoming-webhooks
+pagespeed_api_key: 'Get an Google Search API key from https://developers.google.com/webmaster-tools/search-console-api/v1/configure'
+webpagetest_api_key: 'Get a WebPageTest API key from https://www.webpagetest.org/getkey.php'
+slack_channel: 'Select existing Slack channel to post to'
+slack_username: 'Choose the name of the pagespeed Slack bot which posts to the channel'
+slack_bot_emoji: ':zap:'
+improvement_emoji: ':racehorse:'
+minimal_change_emoji: ':no_mouth:'
+regression_emoji: ':no-entry:'
+domain: 'https://www.google.com/'
+include_timestamp: true
+threshold: '2'
+page_list:
+- 'drive/'
+- 'calendar/'
