@@ -3,27 +3,27 @@ require 'json'
 require 'yaml'
 
 def configure
- puts "hi"
+  puts "hi"
 end
 
 
-
 configuration_info = YAML.load_file('configuration.yml')
-@slack_post_url = configuration_info['slack_url']
+@slack_post_url    = configuration_info['slack_url']
 
 HTTParty::Basement.default_options.update(verify: false)
-@pagespeed_api_key    = ENV['pagespeed_api_key']
-@webpagetest_api_key  = ENV['webpagetest_api_key']
+@pagespeed_api_key    = configuration_info['pagespeed_api_key']
+@webpagetest_api_key  = configuration_info['webpagetest_api_key']
+@slack_post_url       = configuration_info['slack_url']
 @history_file         = './pagespeed_history.txt'
-@slack_channel        = ENV['slack_channel'].nil? ? 'site-speed' : ENV['slack_channel']
-@slack_username       = ENV['slack_username'].nil? ? 'MIT Page Performance BOT' : ENV['slack_username']
-@slack_bot_emoji      = ENV['emoji'].nil? ? ':sonic-running:' : ENV['emoji']
-@improvement_emoji    = ENV['improvement_emoji'].nil? ? ':fastparrot:' : ENV['improvement_emoji']
-@minimal_change_emoji = ENV['minimal_change_emoji'].nil? ? ':no_mouth:' : ENV['minimal_change_emoji']
-@regression_emoji     = ENV['regression_emoji'].nil? ? ':angry_trump_anim:' : ENV['regression_emoji']
-@domain               = ENV['domain'].nil? ? 'https://www.comparethemarket.com/' : ENV['domain']
-@message              = "Page performance scores for #{Date.today.strftime('%d/%m/%Y')}. \n"
-@threshold            = ENV['threshold'].nil? ? 2 : ENV['threshold'].to_i
+@slack_channel        = configuration_info['slack_channel']
+@slack_username       = configuration_info['slack_username']
+@slack_bot_emoji      = configuration_info['slack_bot_emoji']
+@improvement_emoji    = configuration_info['improvement_emoji']
+@minimal_change_emoji = configuration_info['minimal_change_emoji']
+@regression_emoji     = configuration_info['regression_emoji']
+@domain               = configuration_info['domain']
+@message              = configuration_info['include_timestamp'] ? "Page performance scores for #{Date.today.strftime('%d/%m/%Y')}. \n" : ''
+@threshold            = configuration_info['threshold'].to_i
 @results              = {}
 # @page_list            = %w(
 #   credit-cards/
@@ -39,7 +39,7 @@ credit-cards/
 )
 
 # @run_results = [{}, {}, {}]
-@run_results = [{}]
+@run_results          = [{}]
 @page_list.each do |page|
   search_string  = page.gsub('-', '+').gsub('/', '')
   search_string  = search_string + '+switch' if page == 'energy/'
@@ -96,8 +96,8 @@ end
 def slack_notify(message)
   HTTParty.post(@slack_post_url,
                 body:    { 'channel': "##{@slack_channel}", 'icon_emoji': @slack_bot_emoji, 'username': @slack_username, 'text': message }.to_json,
-    headers: { 'Content-Type': 'application/json',
-    'Accept':       'application/json' })
+                headers: { 'Content-Type': 'application/json',
+                           'Accept':       'application/json' })
 end
 
 def get_old_score(latest_score, page, score_key)
