@@ -1,0 +1,4 @@
+.idea*
+pagespeed_slack_notifier*.gem
+pagespeed_history.txt
+configuration.yml

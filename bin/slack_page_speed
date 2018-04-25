@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+raise 'you need to populate configuration.yml first' unless (File.exists?('./configuration.yml'))
+require 'slack_page_speed'
