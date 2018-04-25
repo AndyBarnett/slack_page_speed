@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
    s.files       = ["lib/slack_page_speed.rb"]
    s.homepage    =
      'http://rubygems.org/gems/slack_page_speed'
-   s.license       = 'GNU GPLv3'
+   s.license       = 'GPL-3.0'
  end

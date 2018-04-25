@@ -1,4 +1,5 @@
 .idea*
-pagespeed_slack_notifier*.gem
+.DS_Store
+slack_page_speed-*.gem
 pagespeed_history.txt
 configuration.yml

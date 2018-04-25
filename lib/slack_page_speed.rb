@@ -8,7 +8,7 @@ end
 
 
 
-configuration_info = YAML.load_file('../configuration.yml')
+configuration_info = YAML.load_file('configuration.yml')
 @slack_post_url = configuration_info['slack_url']
 
 HTTParty::Basement.default_options.update(verify: false)
