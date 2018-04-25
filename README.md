@@ -1,7 +1,7 @@
 ## Usage
 # Setup
-Rename the 'configuration.yml.example' file to 'configuration.yml'
-Fill out the desired values for all the properties. You MUST fill in the following values yourself for this gem to work:
+Run `slack_page_speed configure` and a 'configuration.yml' file should be created.
+Fill out the desired values for all the properties in this file. You MUST fill in the following values yourself as a minimum for this gem to work:
 * slack_url
 * pagespeed_api_key
 * webpagetest_api_key
@@ -10,5 +10,6 @@ Fill out the desired values for all the properties. You MUST fill in the followi
 * page_list
 
 # Running
-Install the gem with `gem install slack_page_speed`
-run `slack_page_speed` (Can only be done after Setup!)
+You should run the script in a directory that will be dedicated to Pagespeed scores, because for this gem to be the most useful it can be, it relies on keeping a history file of scores from the previous run.
+
+Run `slack_page_speed` (Can only be done after Setup!)
